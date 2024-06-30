@@ -1,7 +1,7 @@
 ## En cours
 - [x] gestion utilisateur
 - [x] gestion admin
-- [ ] gestion produit
+- [x] gestion produit
 - [ ] gestion panier
 - [ ] gestion commande
 - [ ] envoie mail validation panier
