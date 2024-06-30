@@ -2,7 +2,7 @@
 
 ### Description :
  L’application permet d'avoir un ecommerce avec gestion des utilisateur, gestion de produits et gestion de commande simplifier (pas de systéme de paiement en place)
- Vous trouverer une [Demonstration ici](https://abkff.fr/vtc/), vous pouvez vous créer un compte pour l essaie ou utiliser le compte test@test.fr avec le mdp : 123456\
+ Vous trouverer une [Demonstration ici](https://abkff.fr/light_e-commerce/public/), vous pouvez vous créer un compte pour l essaie ou utiliser le compte test@test.fr avec le mdp : 123456\
  La validation de l'inscription par mail est implanté mais par active au niveau de la gestion de l'utilisateur.
 
 ### Contenue :
