@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h1>Catalogue</h1>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for product in products %}
+                <div class="col">
+                    <div class="card">
+                        {% if product.image != "" %}
+                            <img src="{{ asset('uploads/products/' ~ product.image) }}" class="card-img-top imageIndex"
+                                 alt="{{ product.image }}">
+                        {% else %}
+                            <img src="{{ asset('uploads/pas_d_image.png') }}" class="card-img-top imageIndex" alt="...">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.resume|length > 30 ? product.resume|striptags()| raw|slice(0,30)~'...' : product.resume|striptags()| raw }}</p>
+                            <a href="{{ path('app_product_show', {'id': product.id}) }}"
+                               class="btn btn-primary">Afficher</a>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="text-bg-light p-1 fs-4">{{ product.price }} €</div>
+                                <div class="btn-group" role="group" aria-label="Third group">
+                                    <button type="button" class="btn btn-info">Ajouter au panier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <tr>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="{{ asset('uploads/pas_d_image.png') }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Pas de produit</h5>
+                                <p class="card-text"></p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-body-secondary"></small>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+            {% endfor %}
+        </div>
+
+        <div class="pagin">
+            {{ knp_pagination_render(products) }}
+        </div>
+
+    </div>
+{% endblock %}

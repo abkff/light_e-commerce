@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="card mb-6">
+            <div class="card-header">
+                <div class="btn-toolbar justify-content-between" role="toolbar">
+                    <div class="btn-group" role="group" aria-label="fist group">
+                        <button type="button" class="btn btn-info">
+                            <a class="link" href="{{ path('app_product_index') }}">Retour</a>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="second group">
+                        <h1>{{ product.name }}</h1>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Third group">
+                            <button type="button" class="btn btn-info">Ajouter au panier</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card text-bg-dark">
+                {% if product.image != "" %}
+                    <img src="{{ asset('uploads/products/' ~ product.image) }}" class="card-img-top imageIndex"
+                         alt="{{ product.image }}">
+                {% else %}
+                    <img src="{{ asset('uploads/pas_d_image.png') }}" class="card-img-top imageIndex" alt="...">
+                {% endif %}
+                <div class="card-img-overlay">
+                    <h5 class="card-title">{{ product.price }} €</h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ product.resume|striptags('<strong>,<ul>,<li>')| raw }}</p>
+            </div>
+        </div>
+
+{#        <h1>Commentaire</h1>#}
+{#        {% for commentaire in commentaires|sort((a, b) => b.createdAt <=> a.createdAt) %}#}
+{#            <div class="card mb-3 listCom">#}
+{#                <h5 class="card-header">posté par : {{ commentaire.author }},#}
+{#                    le {{ commentaire.createdAt ? commentaire.createdAt|date('d-m-Y H:i') : '' }}</h5>#}
+{#                <div class="card-body">#}
+{#                    <div class="card-text">{{ commentaire.Content|striptags()| raw  }}</div>#}
+{#                    {% if app.user == commentaire.author %}#}
+{#                        <a href="{{ path('app_commentaire_edit', {'id': commentaire.id}) }}"#}
+{#                           class="btn btn-primary">Editer</a>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#            </div>#}
+{#        {% else %}#}
+{#            <div class="card">#}
+{#                <h5 class="card-header">Pas de commentaire</h5>#}
+{#                <div class="card-body">#}
+{#                    <h5 class="card-title">Pas de commentaire</h5>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
+
+{#        {{ include('commentaire/_form.html.twig') }}#}
+    </div>
+{% endblock %}
