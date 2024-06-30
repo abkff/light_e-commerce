@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Product;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -33,6 +34,8 @@ class adminController extends AbstractDashboardController
 
             MenuItem::section('Utilisateur'),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
+            MenuItem::section('Produit'),
+            MenuItem::linkToCrud('Produits', 'fa fa-user', Product::class),
             ];
     }
 }
