@@ -2,6 +2,7 @@
 - [x] gestion utilisateur
 - [x] gestion admin
 - [x] gestion produit
+- [x] gestion commentaire
 - [ ] gestion panier
 - [ ] gestion commande
 - [ ] envoie mail validation panier
