@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PanierController!{% endblock %}
-
 {% block body %}
 <div class="container">
 <h1>Mon Panier</h1>        
@@ -32,8 +30,8 @@
                         </a>
                         
                     </td>
-                    <td>{{ commande.product.price }}</td>
-                    <td>{{ commande.qte * commande.product.price }}</td>
+                    <td>{{ commande.product.price }} €</td>
+                    <td>{{ commande.qte * commande.product.price }} €</td>
                     
                 </tr>
                 <tr>
@@ -56,11 +54,6 @@
         
         {% if commandes|length > 0 %}
             <div class="col-md-4">
-                <i class="fa-regular fa-credit-card"></i>
-                <button class="btn btn-outline-success disabled">
-                    Net à payer: {{ Total }} €
-                </button>
-
                 <a href="{{path('app_commande_index')}}">
                     <button class="btn btn-warning">
                     Commandez vos articles

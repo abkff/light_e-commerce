@@ -52,9 +52,9 @@ class CommandeController extends AbstractController
 
             $email = (new TemplatedEmail())
                 ->from('hello@example.com')
-                ->to('you@example.com')
+                ->to($this->getUser()->getEmail())
                 ->subject('light e-commerce: commande  '.$commande->getCreateAt()->format('d-m-Y H:i:s'))
-                ->htmlTemplate('commande/invoice..html.twig')
+                ->htmlTemplate('commande/mail.html.twig')
                 ->context([
                     'commande' => $commande,
                 ])
