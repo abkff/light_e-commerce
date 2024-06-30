@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Commentaire;
 use App\Entity\Product;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -36,6 +37,8 @@ class adminController extends AbstractDashboardController
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
             MenuItem::section('Produit'),
             MenuItem::linkToCrud('Produits', 'fa fa-user', Product::class),
+            MenuItem::section('Commentaire'),
+            MenuItem::linkToCrud('Commentaire', 'fa fa-user', Commentaire::class),
             ];
     }
 }

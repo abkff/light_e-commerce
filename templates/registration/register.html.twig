@@ -3,21 +3,64 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+    <div class="container">
+        <h1 class="titreForm">Register</h1>
+        {{ form_errors(registrationForm) }}
+        {{ form_start(registrationForm, {'attr':{'novalidate':'novalidate'}}) }}
+        <div class="row g-3">
+            <div class="form-floating col-md-6">
+                {{ form_widget(registrationForm.firstname, {'attr':{'class':'form-control', 'id':'floatingInputPrenom', 'placeholder':'Saisir votre prenom'}} ) }}
+                {{ form_label(registrationForm.firstname, 'prénom', {'label_attr': {'for': 'floatingInputPrenom'}} ) }}
+                {{ form_errors(registrationForm.firstname) }}
+            </div>
+            <div class="form-floating col-md-6">
+                {{ form_widget(registrationForm.lastname, {'attr':{'class':'form-control', 'id':'floatingInputNom', 'placeholder':'Saisir votre nom'}} ) }}
+                {{ form_label(registrationForm.lastname, 'nom', {'label_attr': {'for': 'floatingInputNom'}} ) }}
+                {{ form_errors(registrationForm.lastname) }}
+            </div>
+            <div class="form-floating col-md-6">
+                {{ form_widget(registrationForm.email, {'attr':{'class':'form-control', 'id':'floatingInputEmail', 'placeholder':'Saisir votre email'}} ) }}
+                {{ form_label(registrationForm.email, 'email', {'label_attr': {'for': 'floatingInputEmail'}} ) }}
+                {{ form_errors(registrationForm.email) }}
+            </div>
+            <div class="form-floating col-md-6">
+                {{ form_widget(registrationForm.phone, {'attr':{'class':'form-control', 'id':'floatingInputEmail', 'placeholder':'Saisir votre email'}} ) }}
+                {{ form_label(registrationForm.phone, 'email', {'label_attr': {'for': 'floatingInputEmail'}} ) }}
+                {{ form_errors(registrationForm.phone) }}
+            </div>
+            <div class="form-floating col-12">
+                {{ form_widget(registrationForm.adress, {'attr':{'class':'form-control', 'id':'floatingInputAdresse', 'placeholder':'Saisir votre adresse'}} ) }}
+                {{ form_label(registrationForm.adress, 'adresse',{'label_attr': {'for': 'floatingInputAdresse'}} ) }}
+                {{ form_errors(registrationForm.adress) }}
+            </div>
+            <div class="form-floating col-md-6">
+                {{ form_widget(registrationForm.codeP, {'attr':{'class':'form-control', 'id':'floatingInputCP', 'placeholder':'Saisir votre code postal'}} ) }}
+                {{ form_label(registrationForm.codeP, 'code postal', {'label_attr': {'for': 'floatingInputCP'}} ) }}
+                {{ form_errors(registrationForm.codeP) }}
+            </div>
+            <div class="form-floating col-md-6">
+                {{ form_widget(registrationForm.town, {'attr':{'class':'form-control', 'id':'floatingInputVille', 'placeholder':'Saisir votre ville'}} ) }}
+                {{ form_label(registrationForm.town, 'ville', {'label_attr': {'for': 'floatingInputVille'}} ) }}
+                {{ form_errors(registrationForm.town) }}
+            </div>
+            <div class="form-floating col-md-6">
+                {{ form_widget(registrationForm.plainPassword.first, {'attr':{'class':'form-control', 'id':'floatingInputmdp1', 'placeholder':'Saisir votre email'}} ) }}
+                {{ form_label(registrationForm.plainPassword.first, 'mot de passe', {'label_attr': {'for': 'floatingInputmdp1'}} ) }}
+                {{ form_errors(registrationForm.plainPassword.first) }}
+            </div>
+            <div class="form-floating col-md-6">
+                {{ form_widget(registrationForm.plainPassword.second, {'attr':{'class':'form-control', 'id':'floatingInputmdp2', 'placeholder':'Saisir votre email'}} ) }}
+                {{ form_label(registrationForm.plainPassword.second, 'répéter mot de passe', {'label_attr': {'for': 'floatingInputmdp2'}} ) }}
+            </div>
 
-    <h1>Register</h1>
-
-    {{ form_errors(registrationForm) }}
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        </div>
+        <div class="form-check form-switch tos">
+            {{ form_row(registrationForm.agreeTerms,{'attr' : {'class' : 'form-check-input'}, 'label': 'TOS'}) }}
+        </div>
+        <button type="submit" class="btn btn-success">S'inscire</button>
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
+
+
+

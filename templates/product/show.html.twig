@@ -36,28 +36,25 @@
             </div>
         </div>
 
-{#        <h1>Commentaire</h1>#}
-{#        {% for commentaire in commentaires|sort((a, b) => b.createdAt <=> a.createdAt) %}#}
-{#            <div class="card mb-3 listCom">#}
-{#                <h5 class="card-header">posté par : {{ commentaire.author }},#}
-{#                    le {{ commentaire.createdAt ? commentaire.createdAt|date('d-m-Y H:i') : '' }}</h5>#}
-{#                <div class="card-body">#}
-{#                    <div class="card-text">{{ commentaire.Content|striptags()| raw  }}</div>#}
-{#                    {% if app.user == commentaire.author %}#}
-{#                        <a href="{{ path('app_commentaire_edit', {'id': commentaire.id}) }}"#}
-{#                           class="btn btn-primary">Editer</a>#}
-{#                    {% endif %}#}
-{#                </div>#}
-{#            </div>#}
-{#        {% else %}#}
-{#            <div class="card">#}
-{#                <h5 class="card-header">Pas de commentaire</h5>#}
-{#                <div class="card-body">#}
-{#                    <h5 class="card-title">Pas de commentaire</h5>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
-
-{#        {{ include('commentaire/_form.html.twig') }}#}
+        <h1>Commentaire</h1>
+        {% for commentaire in commentaires|sort((a, b) => b.createAt <=> a.createAt) %}
+            <div class="card mb-3 listCom">
+                <h5 class="card-header">posté par : {{ commentaire.author.firstname }},
+                    le {{ commentaire.createAt ? commentaire.createAt|date('d-m-Y H:i') : '' }}</h5>
+                <div class="card-body">
+                    <div class="card-text">{{ commentaire.Content|striptags()| raw  }}</div>
+                </div>
+            </div>
+        {% else %}
+            <div class="card">
+                <h5 class="card-header">Pas de commentaire</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Pas de commentaire</h5>
+                </div>
+            </div>
+        {% endfor %}
+        {% if app.user is not null %}
+        {{ include('commentaire/_form.html.twig') }}
+        {% endif %}
     </div>
 {% endblock %}

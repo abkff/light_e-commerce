@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+<div class="ajoutCom">
+
+    <div class="form-floating col-12">
+        {{ form_widget(form.content, {'attr':{'class':'form-control', 'id':'floatingInputcontent', 'placeholder':'Saisir votre contenu','style': 'height:150px'}} ) }}
+        {{ form_label(form.content, 'Ajouter un commentaire', {'label_attr': {'for': 'floatingInputcontent'}} ) }}
+        {{ form_errors(form.content) }}
+
+        <div class="w-100 d-inline-flex justify-content-evenly p-3">
+            <div class="form-floating col-md-1">
+                <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+            </div>
+        </div>
+{{ form_end(form) }}

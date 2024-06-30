@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaire;
 use App\Entity\Product;
+use App\Form\CommentaireType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -49,11 +51,25 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
-    public function show(Product $product): Response
+    #[Route('/{id}', name: 'app_product_show', methods: ['GET', 'POST'])]
+    public function show(Product $product,Request $request, EntityManagerInterface $entityManager): Response
     {
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $commentaire->setAuthor($this->getUser());
+            $commentaire->setProduct($product);
+            $entityManager->persist($commentaire);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_product_show', array('id' => $product->getId()), Response::HTTP_SEE_OTHER);
+        }
         return $this->render('product/show.html.twig', [
             'product' => $product,
+            'commentaires' => $product->getCommentaires(),
+            'form' => $form,
         ]);
     }
 
@@ -75,7 +91,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_product_delete', methods: ['POST'])]
+    #[Route('/{id}/delete', name: 'app_product_delete', methods: ['POST'])]
     public function delete(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->getPayload()->getString('_token'))) {
