@@ -3,10 +3,10 @@
 - [x] gestion admin
 - [x] gestion produit
 - [x] gestion commentaire
-- [ ] gestion panier
-- [ ] gestion commande
-- [ ] envoie mail validation panier
-- [ ] envoie pdf commande avec mail
+- [x] gestion panier
+- [x] gestion commande
+- [x] envoie mail validation panier (mailtrap)
+- [x] envoie pdf commande avec mail (mailtrap)
 - [x] ux page home
 - [x] ux page register
 - [x] ux page login

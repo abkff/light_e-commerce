@@ -38,9 +38,16 @@ class Product
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'product', orphanRemoval: true)]
     private Collection $commentaires;
 
+    /**
+     * @var Collection<int, Commande>
+     */
+    #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'product')]
+    private Collection $commandes;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -141,6 +148,33 @@ class Product
     {
         // TODO: Implement __toString() method.
         return $this->getName();
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): static
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): static
+    {
+        if ($this->commandes->removeElement($commande)) {
+            $commande->removeProduct($this);
+        }
+
+        return $this;
     }
 
 

@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>Mon Panier</h1>        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire</th>
+                    <th>Prix Total</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for commande in commandes %}
+                <tr>
+                    <td>{{ commande.product.name }}</td>
+                    <td>
+                        <a href="{{ path('app_panier_remove_item', {id: commande.product.id}) }}" class="btn btn-outline-danger">
+                            {% if commande.qte > 1  %}
+                                <i class="fa-solid fa-minus"></i>
+                            {% else %}
+                                <i class="fa-regular fa-trash-can"></i>
+                            {% endif %}
+                        </a>
+                        <i class="px-2">{{ commande.qte }}</i>
+                        <a href="{{ path('app_panier_add_item', {id: commande.product.id}) }}" class="btn btn-outline-success">
+                            <i class="fa-solid fa-plus"></i>
+                        </a>
+                        
+                    </td>
+                    <td>{{ commande.product.price }}</td>
+                    <td>{{ commande.qte * commande.product.price }}</td>
+                    
+                </tr>
+                <tr>
+                    <th>Total Commande</th>
+                <td>{{Total}}</td>
+                </tr>
+                {% else %}
+                        <tr>
+                            <td>
+                                Votre panier est vide! <br>
+                                Parcourez et découvrez nos meilleures offres!
+                                <a href="{{path('app_product_index')}}">
+                                    <button class="btn btn-info">Commencez vos achats par ici </button>
+                                </a>    
+                            </td>
+                        </tr>    
+                    {% endfor %}
+            </tbody>
+        </table>
+        
+        {% if commandes|length > 0 %}
+            <div class="col-md-4">
+                <i class="fa-regular fa-credit-card"></i>
+                <button class="btn btn-outline-success disabled">
+                    Net à payer: {{ Total }} €
+                </button>
+
+                <a href="{{path('app_commande_index')}}">
+                    <button class="btn btn-warning">
+                    Commandez vos articles
+                </button>
+            </a>
+            </p>
+
+            </div>
+        {% endif %}
+</div>
+{% endblock %}

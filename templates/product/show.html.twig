@@ -16,7 +16,11 @@
                         <h1>{{ product.name }}</h1>
                     </div>
                     <div class="btn-group" role="group" aria-label="Third group">
-                            <button type="button" class="btn btn-info">Ajouter au panier</button>
+                        <a href="{{ path('app_panier_new', {'id': product.id}) }}">
+                            <button class="btn btn-info">
+                                Ajouter au panier
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

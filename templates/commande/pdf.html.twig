@@ -1,0 +1,25 @@
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    <h1>Commande</h1>
+    {% for commandes in commande %}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Numéro de la commande</th>
+                <td>{{ commandes.id }}</td>
+            </tr>
+            <tr>
+                <th>date de la commande</th>
+                <td>{{ commandes.createAt ? commandes.createAt|date('d-m-Y H:i:s') : '' }}</td>
+            </tr>
+            {% for product in commandes.product %}
+            <tr>
+                <th>Produit</th>
+                <td>{{ product.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+{% endblock %}

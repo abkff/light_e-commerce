@@ -1,0 +1,33 @@
+<p>
+    Bonjour  {{ commande.user }}
+</p>
+<p>
+<code>{{ commande.user.adress }}</code>
+<code>{{ commande.user.codeP }}</code>
+<code>{{ commande.user.town }}</code>
+</p>
+
+<p>
+    Merci pour votre commande.
+    <br>
+    "Veuillez trouver ci-joint la facture correspondant à votre achat.
+</p>
+<hr>
+ <p>
+    <h2> Liste des produits :</h2>
+    <ul>
+    {% for item in commande.product %}
+        
+        <li>
+            {{ item.name }}
+        </li>
+    {% endfor %}
+    </ul>
+ </p>
+
+<hr>
+<hr>
+
+
+
+

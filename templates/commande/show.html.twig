@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    <h1>Commande</h1>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Numéro de la commande</th>
+                <td>{{ commandes.id }}</td>
+            </tr>
+            <tr>
+                <th>date de la commande</th>
+                <td>{{ commandes.createAt ? commandes.createAt|date('d-m-Y H:i:s') : '' }}</td>
+            </tr>
+            {% for product in commandes.product %}
+            <tr>
+                <th>Produit</th>
+                <td>{{ product.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{{ path('app_mes_commande_index') }}">back to list</a>
+
+{% endblock %}

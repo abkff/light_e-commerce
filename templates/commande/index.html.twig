@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+    <h1>Commande index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numéro de commande</th>
+                <th>Date de la commande</th>
+                <th>Produits commandé</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.createAt ? commande.createAt|date('d-m-Y H:i:s') : '' }}</td>
+                <td>
+                    {% for product in commande.product %}
+                        {{ product }}
+                    {% endfor %}
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_commande_show', {'id': commande.id}) }}">voir details</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Vous n'avez aucune commande</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
