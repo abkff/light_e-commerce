@@ -1,7 +1,12 @@
 ## En cours
-- [ ] gestion utilisateur
-- [ ] gestion admin
+- [x] gestion utilisateur
+- [x] gestion admin
 - [ ] gestion produit
 - [ ] gestion panier
+- [ ] gestion commande
 - [ ] envoie mail validation panier
 - [ ] envoie pdf commande avec mail
+- [ ] ux page home
+- [ ] ux page register
+- [ ] ux page login
+- [ ] ux page produit
