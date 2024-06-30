@@ -7,7 +7,7 @@
 - [ ] gestion commande
 - [ ] envoie mail validation panier
 - [ ] envoie pdf commande avec mail
-- [ ] ux page home
-- [ ] ux page register
-- [ ] ux page login
-- [ ] ux page produit
+- [x] ux page home
+- [x] ux page register
+- [x] ux page login
+- [x] ux page produit
